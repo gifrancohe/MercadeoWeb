@@ -22,6 +22,7 @@ use Yii;
  */
 class Venta extends \yii\db\ActiveRecord
 {
+    public $periodo;
     /**
      * {@inheritdoc}
      */
@@ -38,7 +39,7 @@ class Venta extends \yii\db\ActiveRecord
         return [
             [['tendero_id', 'producto_id', 'presentacion_id', 'precio_id', 'cantidad', 'fecha_venta'], 'required'],
             [['tendero_id', 'producto_id', 'presentacion_id', 'precio_id', 'cantidad'], 'integer'],
-            [['fecha_venta'], 'safe'],
+            [['fecha_venta, periodo'], 'safe'],
             [['precio_id'], 'exist', 'skipOnError' => true, 'targetClass' => Precio::className(), 'targetAttribute' => ['precio_id' => 'id_precio']],
             [['presentacion_id'], 'exist', 'skipOnError' => true, 'targetClass' => Presentacion::className(), 'targetAttribute' => ['presentacion_id' => 'id_presentacion']],
             [['producto_id'], 'exist', 'skipOnError' => true, 'targetClass' => Producto::className(), 'targetAttribute' => ['producto_id' => 'id_producto']],
@@ -59,6 +60,7 @@ class Venta extends \yii\db\ActiveRecord
             'precio_id' => 'Precio',
             'cantidad' => 'Cantidad',
             'fecha_venta' => 'Fecha de Venta',
+            'periodo' => 'Período',
         ];
     }
 

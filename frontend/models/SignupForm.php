@@ -1,6 +1,7 @@
 <?php
 namespace frontend\models;
 
+use Yii;
 use yii\base\Model;
 use common\models\User;
 
@@ -85,12 +86,17 @@ class SignupForm extends Model
         $user->generateAuthKey();
         $user->created_at = time();
         $user->updated_at = time();
-
-        if(!$user->save()) {
-            print_r($user->getErrors());
-            die;
-        }
         
         return $user->save() ? $user : null;
+    }
+
+    public function sendEmail($emailTo)
+    {
+        return Yii::$app->mailer->compose()
+            ->setTo($emailTo)
+            ->setFrom(['mercadeo@itm.com' => 'Alertas Mercadeo'])
+            ->setSubject('Bienvenido')
+            ->setTextBody('Este es el correo de bienvenida.')
+            ->send();
     }
 }

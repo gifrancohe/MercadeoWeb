@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use common\models\User;
 
 /**
  * This is the model class for table "tendero".
@@ -85,6 +86,14 @@ class Tendero extends \yii\db\ActiveRecord
     public function getPuntoVenta()
     {
         return $this->hasOne(PuntoVenta::className(), ['id_punto_venta' => 'punto_venta_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
     /**

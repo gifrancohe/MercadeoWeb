@@ -36,13 +36,13 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => 'Inicio', 'url' => ['/site/index']],
+        /*['label' => 'About', 'url' => ['/site/about']],
+        ['label' => 'Contact', 'url' => ['/site/contact']],*/
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Registrarse', 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => 'Ingresar', 'url' => ['/site/login']];
     } else {
         $menuItems[] = ['label' => 'Tendero', 'url' => ['/tendero/index']];
         $menuItems[] = ['label' => 'Punto de Venta', 'url' => ['/punto-venta/index']];
@@ -51,10 +51,12 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Presentaciones', 'url' => ['/presentacion/index']];
         $menuItems[] = ['label' => 'Venta', 'url' => ['/venta/index']];
         $menuItems[] = ['label' => 'Pedido', 'url' => ['/pedido/index']];
+        $menuItems[] = ['label' => 'Cliente', 'url' => ['/cliente/index']];
+        $menuItems[] = ['label' => 'Estadisticas', 'url' => ['/venta/estadistica']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                'Salir  (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()

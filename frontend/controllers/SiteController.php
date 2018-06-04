@@ -154,6 +154,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post())) {
            if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
+                    $model->sendEmail($user->email);
                     return $this->goHome();
                 }
             }
@@ -211,5 +212,19 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+    public function sendEmail($emailTo, $emailFrom, $subject, $body)
+    {
+        return Yii::$app->mailer->compose()
+            ->setTo($emailTo)
+            ->setFrom([$emailFrom => 'Alertas Mercadeo'])
+            ->setSubject($subject)
+            ->setTextBody($body)
+            ->send();
+    }
+
+    public function estadisticas() {
+        return $this->render('estadisticas');
     }
 }
