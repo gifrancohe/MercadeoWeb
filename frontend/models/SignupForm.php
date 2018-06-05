@@ -61,6 +61,25 @@ class SignupForm extends Model
         ];
     }
 
+     /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'Username',
+            'nombre' => 'Nombre',
+            'apellido' => 'Apellido',
+            'cedula' => 'Cédula',
+            'direccion' => 'Dirección',
+            'telefono' => 'Teléfono',
+            'municipio_id' => 'Municipio',
+            'tipo_usuario_id' => 'Tipo de Usuario',
+            'email' => 'Email',
+            'password' => 'Password',
+        ];
+    }
+
     /**
      * Signs user up.
      *

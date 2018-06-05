@@ -65,8 +65,8 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'municipio_id' => 'Municipio ID',
-            'tipo_usuario_id' => 'Tipo Usuario ID',
+            'municipio_id' => 'Municipio',
+            'tipo_usuario_id' => 'Tipo Usuario',
             'username' => 'Username',
             'auth_key' => 'Auth Key',
             'password_hash' => 'Password Hash',
@@ -76,8 +76,8 @@ class User extends \yii\db\ActiveRecord
             'nombre' => 'Nombre',
             'apellido' => 'Apellido',
             'cedula' => 'Cedula',
-            'direccion' => 'Direccion',
-            'telefono' => 'Telefono',
+            'direccion' => 'Dirección',
+            'telefono' => 'Teléfono',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

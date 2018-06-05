@@ -9,6 +9,8 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use app\models\Municipio;
+use common\models\User;
 
 AppAsset::register($this);
 ?>
@@ -95,7 +97,20 @@ AppAsset::register($this);
     <div class="container">
         <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-right">
+            <?php if(Yii::$app->getRequest()->getCookies()->getValue('user_name')): ?>
+                <b>Nombre</b>: <?= Yii::$app->getRequest()->getCookies()->getValue('user_name')?>
+            <?php endif;?>
+            <?php if(Yii::$app->getRequest()->getCookies()->getValue('ciudad')): ?>
+                <b>Ciudad</b>: <?= Yii::$app->getRequest()->getCookies()->getValue('ciudad')?>
+            <?php endif;?>
+            <?php if(Yii::$app->getRequest()->getCookies()->getValue('date')): ?>
+                <b>Fecha</b>: <?= Yii::$app->getRequest()->getCookies()->getValue('date')?>
+            <?php endif;?>
+            <?php if(Yii::$app->getRequest()->getCookies()->getValue('time')): ?>
+                <b>Hora</b>: <?= Yii::$app->getRequest()->getCookies()->getValue('time')?>
+            <?php endif;?>
+        </p>
     </div>
 </footer>
 
