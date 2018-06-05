@@ -31,8 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'municipio_id')->textInput() ?>
 
-                <?= $form->field($model, 'tipo_usuario_id')->textInput() ?>
-
                 <?= $form->field($model, 'username')->textInput() ?>
 
                 <?= $form->field($model, 'email') ?>

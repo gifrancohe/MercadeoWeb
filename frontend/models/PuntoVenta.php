@@ -13,6 +13,7 @@ use Yii;
  * @property string $nit
  * @property string $direccion
  * @property string $telefono
+ * @property string $barrio
  *
  * @property Municipio $municipio
  * @property Tendero[] $tenderos
@@ -35,7 +36,7 @@ class PuntoVenta extends \yii\db\ActiveRecord
         return [
             [['municipio_id', 'nombre', 'nit'], 'required'],
             [['municipio_id'], 'integer'],
-            [['nombre', 'direccion'], 'string', 'max' => 155],
+            [['nombre', 'direccion', 'barrio'], 'string', 'max' => 155],
             [['nit', 'telefono'], 'string', 'max' => 45],
             [['municipio_id'], 'exist', 'skipOnError' => true, 'targetClass' => Municipio::className(), 'targetAttribute' => ['municipio_id' => 'id_municipio']],
         ];
@@ -53,6 +54,7 @@ class PuntoVenta extends \yii\db\ActiveRecord
             'nit' => 'Nit',
             'direccion' => 'Direccion',
             'telefono' => 'Telefono',
+            'barrio' => 'Barrio',
         ];
     }
 

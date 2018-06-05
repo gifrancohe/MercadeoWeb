@@ -26,16 +26,21 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_tendero',
-            'municipio_id',
-            'punto_venta_id',
-            'user_id',
+            //'id_tendero',
             'nombre',
-            //'nit',
-            //'direccion',
-            //'telefono',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            'nit',
+            'direccion',
+            'telefono',
+            'municipio.municipio',
+            [
+                'attribute' => 'Punto de Venta',
+                'value' => 'puntoVenta.nombre',
+            ],
+            //'user_id',
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view}{update}',
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

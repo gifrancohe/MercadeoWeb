@@ -44,15 +44,27 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Registrarse', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Ingresar', 'url' => ['/site/login']];
     } else {
-        $menuItems[] = ['label' => 'Tendero', 'url' => ['/tendero/index']];
-        $menuItems[] = ['label' => 'Punto de Venta', 'url' => ['/punto-venta/index']];
-        $menuItems[] = ['label' => 'Productos', 'url' => ['/producto/index']];
-        $menuItems[] = ['label' => 'Precios', 'url' => ['/precio/index']];
-        $menuItems[] = ['label' => 'Presentaciones', 'url' => ['/presentacion/index']];
-        $menuItems[] = ['label' => 'Venta', 'url' => ['/venta/index']];
-        $menuItems[] = ['label' => 'Pedido', 'url' => ['/pedido/index']];
-        $menuItems[] = ['label' => 'Cliente', 'url' => ['/cliente/index']];
-        $menuItems[] = ['label' => 'Estadisticas', 'url' => ['/venta/estadistica']];
+        if(Yii::$app->user->identity->tipo_usuario_id === 1) {
+            $menuItems[] = ['label' => 'Tenderos', 'url' => ['/tendero/index']];
+            $menuItems[] = ['label' => 'Cliente', 'url' => ['/cliente/index']];
+            $menuItems[] = ['label' => 'Punto de Venta', 'url' => ['/punto-venta/index']];
+            $menuItems[] = ['label' => 'Productos', 'url' => ['/producto/index']];
+            $menuItems[] = ['label' => 'Precios', 'url' => ['/precio/index']];
+            $menuItems[] = ['label' => 'Presentaciones', 'url' => ['/presentacion/index']];
+            $menuItems[] = ['label' => 'Estadisticas', 'url' => ['/venta/estadistica']];
+            $menuItems[] = ['label' => 'Usuarios', 'url' => ['/user/index']];
+        }
+        if(Yii::$app->user->identity->tipo_usuario_id === 2) {
+            $menuItems[] = ['label' => 'Encuesta', 'url' => ['/encuesta/encuesta']];
+        }
+        if(Yii::$app->user->identity->tipo_usuario_id === 3) {
+            $menuItems[] = ['label' => 'Ventas', 'url' => ['/venta/index']];
+            $menuItems[] = ['label' => 'Pedidos', 'url' => ['/pedido/index']];
+            
+        }
+        if(Yii::$app->user->identity->tipo_usuario_id === 4 || Yii::$app->user->identity->tipo_usuario_id === 5) {
+            $menuItems[] = ['label' => 'Estadisticas', 'url' => ['/venta/estadistica']];
+        }
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

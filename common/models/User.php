@@ -36,6 +36,12 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+    const ROLE_ADMINISTRADOR = 1;
+    const ROLE_CLIENTE = 2;
+    const ROLE_TENDERO = 3;
+    const ROLE_GERENTE = 4;
+    const ROLE_REPRESENTANTE = 5;
+    
 
     /**
      * {@inheritdoc}
@@ -85,19 +91,19 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'municipio_id' => 'Municipio ID',
-            'tipo_usuario_id' => 'Tipo Usuario ID',
+            'municipio_id' => 'Municipio',
+            'tipo_usuario_id' => 'Tipo de Usuario',
             'username' => 'Username',
             'auth_key' => 'Auth Key',
             'password_hash' => 'Password Hash',
             'password_reset_token' => 'Password Reset Token',
             'email' => 'Email',
-            'status' => 'Status',
+            'status' => 'Estado',
             'nombre' => 'Nombre',
             'apellido' => 'Apellido',
-            'cedula' => 'Cedula',
-            'direccion' => 'Direccion',
-            'telefono' => 'Telefono',
+            'cedula' => 'Cédula',
+            'direccion' => 'Dirección',
+            'telefono' => 'Teléfono',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

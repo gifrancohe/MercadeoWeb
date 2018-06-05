@@ -95,6 +95,87 @@ use kartik\date\DatePicker;
                     <?= $data['total_prod_mas_ventas']; ?>
                 </div>
             </div>
+            <div class="row" style="font-size: 12pt;">
+                <div class="col-lg-4">
+                    <span><b>Producto menos vendido</b>:</span>
+                    <?= $data['producto_menos_vendido']->nombre; ?>
+                </div>
+                <div class="col-lg-4">
+                    <span><b>Total Ventas</b>:</span>
+                    <?= $data['total_prod_menos_ventas']; ?>
+                </div>
+            </div>
+            <div class="row" style="font-size: 12pt;">
+                <div class="col-lg-4">
+                    <span><b>Presentación más vendida</b>:</span>
+                    <?= $data['presentacion_mas_id']->descripcion; ?>
+                </div>
+                <div class="col-lg-4">
+                    <span><b>Veces que se vendio</b>:</span>
+                    <?= $data['presentacion_mas_total']; ?>
+                </div>
+            </div>
+            <div class="row" style="font-size: 12pt;">
+                <div class="col-lg-4">
+                    <span><b>Presentación menos vendida</b>:</span>
+                    <?= $data['presentacion_menos_id']->descripcion; ?>
+                </div>
+                <div class="col-lg-4">
+                    <span><b>Veces que se vendio</b>:</span>
+                    <?= $data['presentacion_menos_total']; ?>
+                </div>
+            </div>
+            <div class="row" style="font-size: 12pt;">
+                <h3> Información de puntos de venta </h3>
+            </div>
+            <div class="row" style="font-size: 12pt;">
+                <div class="col-lg-6" style="color:green;">
+                    <h4> Mayor Venta </h4>
+                </div>
+                <div class="col-lg-6" style="color:red;">
+                    <h4> Menor Venta </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Establecimiento</th>
+                                <th scope="col">Ciudad</th>
+                                <th scope="col">Barrio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th><?= $data['punto_venta_mas']->nombre ?></th>
+                                <td><?= $data['punto_venta_mas']->municipio->municipio ?></td>
+                                <td><?= $data['punto_venta_mas']->barrio ?></td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-6">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Establecimiento</th>
+                                <th scope="col">Ciudad</th>
+                                <th scope="col">Barrio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th><?= $data['punto_venta_menos']->nombre ?></th>
+                                <td><?= $data['punto_venta_menos']->municipio->municipio ?></td>
+                                <td><?= $data['punto_venta_menos']->barrio ?></td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         <?php endif;?>
 
 </div>

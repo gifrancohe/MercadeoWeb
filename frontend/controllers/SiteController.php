@@ -224,7 +224,5 @@ class SiteController extends Controller
             ->send();
     }
 
-    public function estadisticas() {
-        return $this->render('estadisticas');
-    }
+    
 }

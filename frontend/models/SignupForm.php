@@ -81,7 +81,7 @@ class SignupForm extends Model
         $user->direccion = $this->direccion;
         $user->telefono = $this->telefono;
         $user->municipio_id = $this->municipio_id;
-        $user->tipo_usuario_id = $this->tipo_usuario_id;
+        $user->tipo_usuario_id = 2;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->created_at = time();

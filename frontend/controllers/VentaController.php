@@ -240,12 +240,14 @@ class VentaController extends Controller
                 $data['total_prod_mas_ventas'] = $total_mas_ventas;
             }
 
-            $sql = $connection->createCommand("SELECT venta.producto_id, SUM(venta.cantidad) as total FROM venta 
+            $sql = $connection->createCommand("
+            SELECT venta.producto_id, SUM(venta.cantidad) as total 
+            FROM venta 
             WHERE venta.fecha_venta BETWEEN '$fecha_inicio' AND '$fecha_fin' 
             GROUP BY venta.producto_id LIMIT 1");
             $menor_venta = $sql->queryOne();
-            $producto_menos_vendido = $mayor_venta['producto_id'];
-            $total_menos_venta = $mayor_venta['total'];
+            $producto_menos_vendido = $menor_venta['producto_id'];
+            $total_menos_venta = $menor_venta['total'];
             if(!empty($producto_menos_vendido)) {
                 $data['producto_menos_vendido'] = Producto::findOne($producto_menos_vendido);
                 $data['total_prod_menos_ventas'] = $total_menos_venta;

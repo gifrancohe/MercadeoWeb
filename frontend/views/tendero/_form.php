@@ -34,17 +34,8 @@ use kartik\select2\Select2;
         ]);
     ?>
 
-    <?= $form->field($model, 'user_id')->widget(Select2::classname(), [
-            'data' => $usuarios,
-            'language' => 'es',
-            'options' => ['placeholder' => 'Seleccione el usuario ...'],
-            'pluginOptions' => [
-                'allowClear' => true
-            ],
-        ]);
-    ?>
-
-   <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
+    
+    <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'nit')->textInput(['maxlength' => true]) ?>
 
