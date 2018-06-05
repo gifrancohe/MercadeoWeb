@@ -27,13 +27,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id_punto_venta',
-            'municipio_id',
+            'municipio.municipio',
             'nombre',
             'nit',
             'direccion',
             'telefono',
+            'barrio',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view}{update}',
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

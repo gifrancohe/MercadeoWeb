@@ -29,10 +29,12 @@ use kartik\select2\Select2;
 
     <?= $form->field($model, 'direccion')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'barrio')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'telefono')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -18,10 +18,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id_pedido',
-            'producto_id',
-            'presentacion_id',
-            'precio_id',
-            'tendero_id',
+            [
+                'attribute' => 'Producto',
+                'value' => $model->producto->nombre,
+            ],
+            [
+                'attribute' => 'Presentacion',
+                'value' => $model->presentacion->descripcion,
+            ],
+            'precio.precio',
+            [
+                'attribute' => 'Tendero',
+                'value' => $model->tendero->nombre,
+            ],
             'cantidad',
             'fecha_pedido',
         ],

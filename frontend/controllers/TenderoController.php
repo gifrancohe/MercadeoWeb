@@ -73,8 +73,10 @@ class TenderoController extends Controller
         $puntos = ArrayHelper::map(PuntoVenta::find()->all(), 'id_punto_venta', 'nombre');
         $usuarios = ArrayHelper::map(User::find()->all(), 'id', 'username');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_tendero]);
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id_tendero]);
+            }
         }
 
         return $this->render('create', [

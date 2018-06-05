@@ -95,8 +95,18 @@ class SignupForm extends Model
         return Yii::$app->mailer->compose()
             ->setTo($emailTo)
             ->setFrom(['mercadeo@itm.com' => 'Alertas Mercadeo'])
-            ->setSubject('Bienvenido')
-            ->setTextBody('Este es el correo de bienvenida.')
+            ->setSubject('Bienvenido a la comunidad Mercadeo Web')
+            ->setTextBody('Gracias por hacer parte de este proyecto.
+
+                Este es el correo de bienvenida, a partir de ahora perteneces a nuestra comunidad
+                donde podrás obtener descuentos y promociones.
+
+                Estáras enterado de todas nuestras campañas y los beneficios que tenemos para ti.
+
+                Los mejores deseos, :) 
+
+                Equpio de Mercadeo.
+            ')
             ->send();
     }
 }

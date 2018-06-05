@@ -81,8 +81,6 @@ class VentaController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $tendero = Tendero::find()->where(['user_id' => \Yii::$app->user->id])->one();
-            $mensaje = "El producto ". $model->producto->nombre. " esta por debajo del 10% de la cantidad del total de sus pedidos, recuerde realizar un nuevo pedido para dicho producto.";
-                            $this->sendEmail($tendero->user->email, 'giovannyfrancohe@mattelsa.net', 'Producto menor al 10%', $mensaje);
             if(!empty($tendero)) {
                 
                 $pedidos = Pedido::find()->where([
@@ -114,6 +112,7 @@ class VentaController extends Controller
                     }
                     if($validar_existencia === 3) {
                         $model->tendero_id = $tendero->id_tendero;
+                        $model->fecha_venta = date('Y-m-d h:i:s');
                         if($model->save()) {
                             return $this->redirect(['view', 'id' => $model->id_venta]);
                         }
@@ -143,13 +142,36 @@ class VentaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $tenderos = ArrayHelper::map(Tendero::find()->All(), 'id_tendero', 'nombre');
+        $productos = ArrayHelper::map(Producto::find()->All(), 'id_producto', 'nombre');
+        $precios = ArrayHelper::map(Precio::find()->All(), 'id_precio', 'precio');
+        $presentaciones = ArrayHelper::map(Presentacion::find()->All(), 'id_presentacion', 'descripcion');
 
+        $fecha_actual = date('Y-m-d h:i:s');
+        $fecha_venta  = $model->fecha_venta;
+        
+        $inicio = strtotime($fecha_venta);
+        $fin = strtotime($fecha_actual);
+        $dif = $fin - $inicio;
+        $diasFalt = round( (( ( $dif / 60 ) / 60 ) / 24) );
+        $error = false;
+        
+        if($diasFalt <= 3) {
+            Yii::$app->getSession()->setFlash('error', 'Aún no pasan los tres días para que pueda modificar la venta.');
+            $error = true;
+        }
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_venta]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'tenderos' => $tenderos,
+            'productos' => $productos,
+            'precios' => $precios,
+            'presentaciones' => $presentaciones,
+            'error' => $error,
         ]);
     }
 
@@ -338,5 +360,13 @@ class VentaController extends Controller
         ]);
     }
 
-    
+    public function sendEmail($emailTo, $emailFrom, $subject, $mensaje)
+    {
+        return Yii::$app->mailer->compose()
+            ->setTo($emailTo)
+            ->setFrom([$emailFrom => 'Alertas Mercadeo'])
+            ->setSubject($subject)
+            ->setTextBody($mensaje)
+            ->send();
+    }
 }

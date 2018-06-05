@@ -89,6 +89,7 @@ class PuntoVentaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $municipios =  ArrayHelper::map(Municipio::find()->all(), 'id_municipio', 'municipio');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_punto_venta]);
@@ -96,6 +97,7 @@ class PuntoVentaController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'municipios' => $municipios,
         ]);
     }
 

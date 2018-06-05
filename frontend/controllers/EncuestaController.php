@@ -167,6 +167,30 @@ class EncuestaController extends Controller
                     $insert->save();
                 }
                 Yii::$app->session->setFlash('success', 'Gracias por diligenciar la encuesta, al correo se le enviará un bono de descueto para su proxima compra de nuestros productos.'); 
+                
+                $emailTo = Yii::$app->user->identity->email;
+                
+                if(!empty($emailTo)) {
+
+                    $codigo_promocional = substr(md5(mt_rand()), 0, 7);
+                    
+                    Yii::$app->mailer->compose()
+                    ->setTo($emailTo)
+                    ->setFrom(['mercadeo@itm.com' => 'Alertas Mercadeo'])
+                    ->setSubject('Encuesta Realizada - Mercadeo Web')
+                    ->setTextBody("Felicitaciones
+    
+                    Ustede a diligenciado nuestra encuesta satisfactoriamente,por lo cual queremos agradecerle, ya que con la información que nos suministro, buscamos siempre mejorar nuestro servicio.
+                    
+                    A continuación le otorgamos un código con el cual obtendra un descuento del 45% en la proxíma compra que haga en nuestros puntos de venta.
+    
+                        * Código promocional: $codigo_promocional
+    
+                    Feliz Dia!!")
+                    ->send();
+                }else {
+                    Yii::$app->session->setFlash('error', 'No se puedo enviar el correo con el código de descuento, no se pudo consultar el email del usuario.'); 
+                }
                 return $this->redirect(['site/index']);
             }
         }

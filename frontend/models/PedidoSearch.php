@@ -41,9 +41,16 @@ class PedidoSearch extends Pedido
      */
     public function search($params)
     {
-        $query = Pedido::find();
-
         // add conditions that should always apply here
+        $tipo_usuario = Yii::$app->user->identity->tipo_usuario_id;
+        if($tipo_usuario == 1) {
+            $query = Pedido::find();
+        }else {
+            $tendero = Tendero::find()->where(['user_id' => Yii::$app->user->id])->one();
+            if(!empty($tendero)) {
+                $query = Pedido::find()->where(['tendero_id' => $tendero->id_tendero]);
+            }
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

@@ -27,14 +27,26 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id_venta',
-            'tendero_id',
-            'producto_id',
-            'presentacion_id',
-            'precio_id',
+            [
+                'attribute' => 'Tendero',
+                'value' => 'tendero.nombre',
+            ],
+            [
+                'attribute' => 'Producto',
+                'value' => 'producto.nombre',
+            ],
+            [
+                'attribute' => 'Presentacion',
+                'value' => 'presentacion.descripcion',
+            ],
+            'precio.precio',
             'cantidad',
             'fecha_venta',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view}{update}', 
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

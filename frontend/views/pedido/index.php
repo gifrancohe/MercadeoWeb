@@ -26,10 +26,19 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id_pedido',
-            'producto_id',
-            'presentacion_id',
-            'precio_id',
-            'tendero_id',
+            [
+                'attribute' => 'Producto',
+                'value' => 'producto.nombre',
+            ],
+            [
+                'attribute' => 'Presentacion',
+                'value' => 'presentacion.descripcion',
+            ],
+            'precio.precio',
+            [
+                'attribute' => 'Tendero',
+                'value' => 'tendero.nombre',
+            ],
             'cantidad',
             'fecha_pedido',
 

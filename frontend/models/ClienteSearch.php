@@ -18,7 +18,7 @@ class ClienteSearch extends Cliente
     public function rules()
     {
         return [
-            [['id', 'municipio_id'], 'integer'],
+            [['id', 'user_id', 'municipio_id', 'tendero_id'], 'integer'],
             [['nombre', 'apellido', 'direccion', 'telefono', 'email'], 'safe'],
         ];
     }
@@ -41,9 +41,18 @@ class ClienteSearch extends Cliente
      */
     public function search($params)
     {
-        $query = Cliente::find();
+        
 
         // add conditions that should always apply here
+        $tipo_usuario = Yii::$app->user->identity->tipo_usuario_id;
+        if($tipo_usuario == 1) {
+            $query = Cliente::find();
+        }else {
+            $tendero = Tendero::find()->where(['user_id' => Yii::$app->user->id])->one();
+            if(!empty($tendero)) {
+                $query = Cliente::find()->where(['tendero_id' => $tendero->id_tendero]);
+            }
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -60,7 +69,9 @@ class ClienteSearch extends Cliente
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'user_id' => $this->user_id,
             'municipio_id' => $this->municipio_id,
+            'tendero_id' => $this->tendero_id,
         ]);
 
         $query->andFilterWhere(['like', 'nombre', $this->nombre])

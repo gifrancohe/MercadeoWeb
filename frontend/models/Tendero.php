@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-use common\models\User;
+use common\models\User as Usuario;
 
 /**
  * This is the model class for table "tendero".
@@ -93,7 +93,7 @@ class Tendero extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(Usuario::className(), ['id' => 'user_id']);
     }
 
     /**

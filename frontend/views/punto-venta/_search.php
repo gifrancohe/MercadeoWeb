@@ -28,6 +28,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'direccion') ?>
 
+    <?= $form->field($model, 'barrio') ?>
+
     <?php // echo $form->field($model, 'telefono') ?>
 
     <div class="form-group">

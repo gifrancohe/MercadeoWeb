@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Cliente', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Cliente', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,13 +26,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
+            'user.username',
+            'municipio.municipio',
+            [
+                'attribute' => 'Tendero',
+                'value' => 'tendero.nombre'
+            ],
             'nombre',
             'apellido',
             'direccion',
             'telefono',
-            //'email:email',
-            //'municipio_id',
+            'email:email',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
