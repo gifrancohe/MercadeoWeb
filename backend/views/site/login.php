@@ -1,35 +1,24 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \common\models\LoginForm */
 
-use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-
-$this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Mercadeo Web';
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="site-index">
 
-    <p>Please fill out the following fields to login:</p>
+    <div class="jumbotron">
+        <h1>Bienvenido al Administrador de la Aplicación!</h1>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+        <p class="lead">Aquí podrá generar la Base de Datos, tablas y registros.</p>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+        <p class="lead">Haga clic sobre el menú <b>Generar Db</b> para ir a la panttalla de generaricón de BD.</p>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+        <p><a class="btn btn-lg btn-success" href="http://localhost/MercadeoWeb/frontend/web/">Regresar al Aplicación</a></p>
+    </div>
 
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
+    <div class="body-content">
 
-                <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                </div>
+        
 
-            <?php ActiveForm::end(); ?>
-        </div>
     </div>
 </div>

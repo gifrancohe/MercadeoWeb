@@ -41,7 +41,11 @@ class OutletSearch extends Outlet
      */
     public function search($params)
     {
-        $query = Outlet::find();
+        if(Yii::$app->user->identity->tipo_usuario_id ==  1) {
+            $query = Outlet::find();
+        }else {
+            $query = Outlet::find()->where(['municipio_id' => Yii::$app->user->identity->municipio_id ]);
+        }
 
         // add conditions that should always apply here
 

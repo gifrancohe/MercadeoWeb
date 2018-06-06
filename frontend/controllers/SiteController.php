@@ -91,15 +91,23 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             $cookies = Yii::$app->response->cookies;
             // añade una nueva cookie a la respuesta que se enviará
+            
+            $cookies->remove('time');
+            $cookies->remove('date');
+            $cookies->remove('user_name');
+            $cookies->remove('ciudad');
             $user = User::findOne(Yii::$app->user->id);
+
             $cookies->add(new \yii\web\Cookie([
                 'name' => 'date',
                 'value' => date('Y-m-d'),
             ]));
+
             $cookies->add(new \yii\web\Cookie([
                 'name' => 'time',
-                'value' => date('h-i-s'),
+                'value' => date('h:i:s'),
             ]));
+
             if(!empty($user)) {
                 $cookies->add(new \yii\web\Cookie([
                     'name' => 'user_name',

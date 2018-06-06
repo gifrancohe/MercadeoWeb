@@ -38,9 +38,12 @@ class OutletController extends Controller
         $searchModel = new OutletSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $user_type = Yii::$app->user->identity->tipo_usuario_id;
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'user_type' => $user_type,
         ]);
     }
 
@@ -52,8 +55,11 @@ class OutletController extends Controller
      */
     public function actionView($id)
     {
+        $user_type = Yii::$app->user->identity->tipo_usuario_id;
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'user_type' => $user_type
         ]);
     }
 

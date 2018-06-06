@@ -17,7 +17,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Crear Outlet', ['create'], ['class' => 'btn btn-success']) ?>
+        <?php 
+            if($user_type == 1) {
+                echo Html::a('Crear Outlet', ['create'], ['class' => 'btn btn-success']);
+            }
+        ?>
     </p>
 
     <?= GridView::widget([
@@ -55,6 +59,10 @@ $this->params['breadcrumbs'][] = $this->title;
             [   
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view}{update}',
+                'visibleButtons' => [
+                    'update' => (Yii::$app->user->identity->tipo_usuario_id === 1) ? true:false,
+                    'view' => (Yii::$app->user->identity->tipo_usuario_id === 1) ? true:false,
+                ],
             ],
         ],
     ]); ?>

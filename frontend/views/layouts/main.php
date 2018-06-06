@@ -38,11 +38,11 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Inicio', 'url' => ['/site/index']],
         /*['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],*/
     ];
     if (Yii::$app->user->isGuest) {
+        $menuItems[] = ['label' => 'Inicio', 'url' => ['/site/index']];
         $menuItems[] = ['label' => 'Registrarse', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Ingresar', 'url' => ['/site/login']];
     } else {
@@ -56,9 +56,11 @@ AppAsset::register($this);
             $menuItems[] = ['label' => 'Estadisticas', 'url' => ['/venta/estadistica']];
             $menuItems[] = ['label' => 'Usuarios', 'url' => ['/user/index']];
             $menuItems[] = ['label' => 'BD', 'url' => ['/db/generar']];
+            $menuItems[] = ['label' => 'Outlet', 'url' => ['/outlet/index']];
         }
         if(Yii::$app->user->identity->tipo_usuario_id === 2) {
             $menuItems[] = ['label' => 'Encuesta', 'url' => ['/encuesta/encuesta']];
+            $menuItems[] = ['label' => 'Outlet', 'url' => ['/outlet/index']];
         }
         if(Yii::$app->user->identity->tipo_usuario_id === 3) {
             $menuItems[] = ['label' => 'Ventas', 'url' => ['/venta/index']];
@@ -95,7 +97,9 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
+        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?>
+        <a href="http://localhost/MercadeoWeb/backend/web/" class="link-hover">Backend</a>
+        </p>
 
         <p class="pull-right">
             <?php if(Yii::$app->getRequest()->getCookies()->getValue('user_name')): ?>
@@ -113,6 +117,13 @@ AppAsset::register($this);
         </p>
     </div>
 </footer>
+
+<?php 
+    $this->registerCss("
+        .link-hover { opacity: 0; }
+        a:hover { opacity: 100; }
+    ");
+?>
 
 <?php $this->endBody() ?>
 </body>

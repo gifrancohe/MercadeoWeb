@@ -28,10 +28,29 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id_precio',
             'precio',
-            'estado',
+            [
+                'attribute'=>'estado',
+                'header'=>'Estado',
+                'filter' => [1=>'Activo', 0=>'Inactivo'],
+                'format'=>'raw',    
+                'value' => function($model, $key, $index)
+                {   
+                    if($model->estado == 1)
+                    {
+                        return 'Activo';
+                    }
+                    else
+                    {   
+                        return 'Inactivo';
+                    }
+                },
+            ],
             'fecha_creacion',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view}{update}',
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

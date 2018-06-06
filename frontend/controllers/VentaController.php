@@ -78,6 +78,7 @@ class VentaController extends Controller
         $productos = ArrayHelper::map(Producto::find()->All(), 'id_producto', 'nombre');
         $precios = ArrayHelper::map(Precio::find()->All(), 'id_precio', 'precio');
         $presentaciones = ArrayHelper::map(Presentacion::find()->All(), 'id_presentacion', 'descripcion');
+        $error = false;
 
         if ($model->load(Yii::$app->request->post())) {
             $tendero = Tendero::find()->where(['user_id' => \Yii::$app->user->id])->one();
@@ -129,6 +130,7 @@ class VentaController extends Controller
            'productos' => $productos,
            'precios' => $precios,
            'presentaciones' => $presentaciones,
+           'error' => $error,
         ]);
     }
 

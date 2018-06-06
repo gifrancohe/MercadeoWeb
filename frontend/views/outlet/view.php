@@ -14,16 +14,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    
     <p>
-        <?= Html::a('Actualizar', ['update', 'id' => $model->id_outlet], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Eliminar', ['delete', 'id' => $model->id_outlet], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Estas seguro que quieres eliminar este registro?',
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?php if($user_type == 1):?>
+            <?= Html::a('Actualizar', ['update', 'id' => $model->id_outlet], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Eliminar', ['delete', 'id' => $model->id_outlet], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Estas seguro que quieres eliminar este registro?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        <?php endif;?>
     </p>
+    
 
     <?= DetailView::widget([
         'model' => $model,

@@ -38,6 +38,10 @@ class ClienteController extends Controller
         $searchModel = new ClienteSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $clientes = Cliente::find()->one();
+
+        
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
